@@ -41,11 +41,11 @@ server "35.154.83.86", user: "ubuntu", roles: %w{app db web}
 #
 # Global options
 # --------------
-set :ssh_options, { 
-  forward_agent: true, 
-  #paranoid: true, 
-  keys: "~/.ssh/id_rsa" 
-}
+# set :ssh_options, { 
+#   forward_agent: true, 
+#   #paranoid: true, 
+#   keys: "~/.ssh/id_rsa" 
+# }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

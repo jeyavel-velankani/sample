@@ -1,13 +1,14 @@
 # config valid only for current version of Capistrano
 lock "3.7.2"
 
-set :application, "sample"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "jadd_sample"
+set :repo_url, "git@github.com:jeyavel-velankani/sample.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, '/home/ubuntu/apps/jadd_sample'
 # set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
@@ -31,3 +32,19 @@ set :repo_url, "git@example.com:me/my_repo.git"
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+set :chruby_ruby, '2.4.0'
+set :passenger_restart_with_touch, true
+
+namespace :deploy do
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+end
